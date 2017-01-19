@@ -1,7 +1,7 @@
 {
-  "name": "ionic-hello-world",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
+  "name": "ionic-calculator",
+  "author": "cellery72",
+  "homepage": "https://github/cellery72/calculator-mobile",
   "private": true,
   "scripts": {
     "clean": "ionic-app-scripts clean",
@@ -36,9 +36,8 @@
     "cordova-plugin-console",
     "cordova-plugin-statusbar",
     "cordova-plugin-device",
-    "cordova-plugin-splashscreen",
     "ionic-plugin-keyboard"
   ],
   "cordovaPlatforms": [],
-  "description": "calculator: An Ionic project"
+  "description": "Basic mobile arithmetic calculator created with Ionic2/Angular."
 }

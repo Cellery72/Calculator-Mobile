@@ -1,3 +1,32 @@
-page-home {
+ion-content{
+  height:100%;
+}
+.mainView {
+  background-color: #4C4C4C;
+  height: 100%;
+}
 
+// Ion-Row's representing Result/Buttons
+.results{
+  height:25vh;
+}
+.buttons{
+  height:13vh;
+}
+
+
+//General Button
+.button{
+  border-radius:25px;
+  margin: 1px 1px 1px 1px;
+}
+button{
+  height:100% !important;
+  color:black !important;
+}
+
+.output{
+  background-color: white;
+  border-radius:15px;
+  margin: 10px 0px 15px 0px;
 }
