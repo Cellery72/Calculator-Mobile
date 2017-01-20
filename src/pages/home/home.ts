@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 
-import { NavController } from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
@@ -8,8 +7,15 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
-    
+  private _value: number;
+  private _lastButtonPressed: string;
+
+
+  constructor() {
+    // set default value to 0
+    this._value = 0.1;
+
   }
+
 
 }

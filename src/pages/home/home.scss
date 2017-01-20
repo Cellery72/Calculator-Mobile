@@ -23,10 +23,15 @@ ion-content{
 button{
   height:100% !important;
   color:black !important;
+  font-size: 1.5em !important;
 }
 
 .output{
   background-color: white;
   border-radius:15px;
+  padding-right:15px;
   margin: 10px 0px 15px 0px;
+  font-size: 4em;
+  line-height: 20vh;
+  text-align:right;
 }

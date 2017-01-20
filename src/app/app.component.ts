@@ -1,4 +1,3 @@
-import { StatusBar } from 'ionic-native/dist/esm';
 import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
 
