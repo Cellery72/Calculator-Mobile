@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { States } from './enums/states.enum';
 
 @Component({
   selector: 'page-home',
@@ -9,13 +10,16 @@ export class HomePage {
   // Constants
   private MAX_NUMERIC_LENGTH: number = 10;
 
-  // MainOutput is the string used to display the MainValue on the calculator
+  // MainOutput is the string used to display the underlying numeric value (mainValue) on the calculator
   private _mainOutput: string;
   // MainValue is the underlying numeric value of the MainOutput
   private _mainValue: number;
-  // LastButtonPressed represents the last button pressed to hold operator/decimal when applicable
-  private _lastButtonPressed: string;
-  private _containsDecimal = false;
+
+  // CurrentState will maintain the current state of the application from the enums provided
+  private _currentState: States;
+
+  // Decimal in Progress determines if the decimal character was the last selected button
+  private _decimalInProgress = false;
   // FirstValue/SecondValue are used to keep track of values in current Equation
   private _firstValue: number;
   private _secondValue: number;
@@ -24,7 +28,9 @@ export class HomePage {
 
   // Default Constructor
   constructor() {
+    // initalize the default value and current state
     this.updateValue(0.0);
+    this._currentState = States.cleared;
   }
 
 
@@ -33,24 +39,20 @@ export class HomePage {
 
   // Operands
   concatOperand(char: string) {
-    // set current operand as last selected button
-    this._lastButtonPressed = char;
     // update the MainValue with the concatanated value + incoming string
     this.updateValue(this.concat(this._mainValue, char));
   }
   // Operators
   setOperator(operator: string) {
-    // save the operator as the last button pressed
-    this._lastButtonPressed = operator;
     // store the current value as the value to be used as FirstValue
     this._firstValue = this._mainValue;
   }
   // CLEAR Event Handler
   clear() {
-    // reset last selected button
-    this._lastButtonPressed = undefined;
-    // set value back to 0.0
+    // set value back to 0.0 and reset current state
     this.updateValue(0);
+    this._secondValue = undefined;
+    this._currentState = States.cleared;
   }
   // EQUALS Event Handler
   equals() {
@@ -73,9 +75,9 @@ export class HomePage {
       // if it's a decimal.. it's unique, yay
       if (next == ".") {
         // It doesn't already contain a decimal place
-        if (!this._containsDecimal) {
+        if (!this._decimalInProgress) {
           // set decimal flag
-          this._containsDecimal = true;
+          this._decimalInProgress = true;
           return base;
         }
         // already has a decimal
@@ -86,13 +88,8 @@ export class HomePage {
       // it's a number!
       else {
 
-        if (this._lastButtonPressed == ".") {
-          return Number(base.toString() + "." + next);
-        }
-        else {
-          // concat strings and return new number
-          return Number(base.toString() + next);
-        }
+        // concat strings and return new number
+        return Number(base.toString() + next);
       }
 
     }
@@ -103,14 +100,8 @@ export class HomePage {
     // update the value with the newValue parameter
     this._mainValue = newValue;
 
-    if (this._lastButtonPressed == ".") {
-      // update the output string from the underlying numeric value
-      this._mainOutput = this._mainValue.toString() + ".";
-    }
-    else {
-      // update the output string from the underlying numeric value
-      this._mainOutput = this._mainValue.toString();
-    }
+    // update the output string from the underlying numeric value
+    this._mainOutput = this._mainValue.toString();
   }
 
 }
