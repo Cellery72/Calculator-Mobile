@@ -1,6 +1,7 @@
 export enum Operators {
-  "divide" = 0,
+  "none" = 0,
+  "divide",
   "multiply",
-  "subtract",
+  "subtraction",
   "addition"
 }
